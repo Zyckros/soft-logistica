@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.SoftLogistica" parent="Theme.MaterialComponents.Light">
+
+    </style>
+
+
+
+    <style name="NavigationVIew" parent="Widget.Design.NavigationView">
+
+    </style>
+
+    <style name="Theme.SoftLogistica.AppBarOverlay" parent="ThemeOverlay.MaterialComponents">
+
+    </style>
+
+
+    <style name="Theme.SoftLogistica.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
+    </style>
+
+
+
+</resources>

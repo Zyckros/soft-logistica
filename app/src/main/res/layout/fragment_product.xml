@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.softlogistica.ui.product.ProductViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root_view">
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="136dp"
+        android:layout_height="122dp"
+        android:layout_marginTop="@dimen/_24sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.273" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:listDataMenu="@{viewmodel.menuItems}"
+        tools:listitem="@layout/item_product_store" />
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_submenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_refresh_layout"
+        android:visibility="gone"
+        app:onRefreshListener="@{() -> viewmodel.onRefresh()}"
+        >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_product"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="gone"
+        android:minHeight="200dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_button_new_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="@color/black"
+        android:src="@drawable/ic_baseline_add_24"
+        android:translationZ="@dimen/_2sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.901"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.922"
+        app:maxImageSize="@dimen/_25sdp"
+        app:pressedTranslationZ="@dimen/_6sdp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+
+
+
+
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/card_view_machines"-->
+    <!--        android:layout_width="144dp"-->
+    <!--        android:layout_height="138dp"-->
+    <!--        android:layout_marginStart="32dp"-->
+    <!--        android:layout_marginTop="24dp"-->
+    <!--        android:layout_marginEnd="24dp"-->
+    <!--        app:cardCornerRadius="10dp"-->
+    <!--        android:translationZ="20dp"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/card_view_auxiliary"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_margin="5dp">-->
+
+    <!--            <ImageButton-->
+    <!--                android:id="@+id/imageButtonMachines"-->
+    <!--                android:layout_width="77dp"-->
+    <!--                android:layout_height="75dp"-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:background="@drawable/ic_baseline_build_24"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/textViewMachines"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="12dp"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="Maquinaria"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/imageButtonMachines" />-->
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--    </androidx.cardview.widget.CardView>-->
+
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/card_view_auxiliary"-->
+    <!--        android:layout_width="144dp"-->
+    <!--        android:layout_height="138dp"-->
+    <!--        android:layout_marginStart="24dp"-->
+    <!--        android:layout_marginTop="24dp"-->
+    <!--        android:layout_marginEnd="32dp"-->
+
+    <!--        android:translationZ="20dp"-->
+    <!--        app:cardCornerRadius="10dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/card_view_machines"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_margin="5dp">-->
+
+    <!--            <ImageButton-->
+    <!--                android:id="@+id/imageButtonAuxiliaryMeans"-->
+    <!--                android:layout_width="77dp"-->
+    <!--                android:layout_height="75dp"-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginEnd="36dp"-->
+    <!--                android:background="@drawable/ic_baseline_rv_hookup_24"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/textViewAuxiliaryMeans"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="19dp"-->
+    <!--                android:layout_marginTop="12dp"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="Medios auxiliares"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/imageButtonAuxiliaryMeans" />-->
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--    </androidx.cardview.widget.CardView>-->
+
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/card_view_transport"-->
+    <!--        android:layout_width="144dp"-->
+    <!--        android:layout_height="138dp"-->
+    <!--        android:layout_marginStart="32dp"-->
+    <!--        android:layout_marginTop="50dp"-->
+    <!--        android:layout_marginEnd="24dp"-->
+    <!--        app:cardCornerRadius="10dp"-->
+    <!--        android:translationZ="20dp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/card_view_machines">-->
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_margin="5dp">-->
+
+
+    <!--            <ImageButton-->
+    <!--                android:id="@+id/imageButtonTransport"-->
+    <!--                android:layout_width="77dp"-->
+    <!--                android:layout_height="75dp"-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginEnd="19dp"-->
+    <!--                android:background="@drawable/ic_baseline_local_shipping_24"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/textViewTransport"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="12dp"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="Transporte"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/imageButtonTransport" />-->
+
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--    </androidx.cardview.widget.CardView>-->
+
+    <!--    -->
+
+
+
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/recyclerview_product_menu_cards"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        app:listData="@{viewmodel.products}"-->
+    <!--        android:visibility="invisible"-->
+    <!--        android:minHeight="200dp"-->
+    <!--        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />-->

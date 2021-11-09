@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="product"
+            type="com.example.softlogistica.model.product.Product" />
+        <variable
+            name="cart"
+            type="com.example.softlogistica.model.cart.Cart" />
+        <variable
+            name="deleteProductCartClickListener"
+            type="com.example.softlogistica.ui.store.DeleteProductCartClickListener" />
+        <variable
+            name="productCartClickListener"
+            type="com.example.softlogistica.ui.store.ProductCartClickListener" />
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:translationZ="5dp"
+        app:cardUseCompatPadding="true"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:onClick="@{()-> productCartClickListener.onClick(product)}"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="@dimen/_270sdp"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/imageView_item_list_product"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="16dp"
+                app:imageUrl="@{product}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.238"
+                tools:background="@drawable/amoladora" />
+
+
+            <TextView
+                android:id="@+id/textView_item_list_product_title"
+                android:layout_width="0dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@{product.brand + ' ' + product.model}"
+                android:textSize="20dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView_item_list_product"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Makita LS1019L" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView_item_list_product"
+                app:layout_constraintTop_toBottomOf="@+id/textView_item_list_product_title"
+                app:layout_constraintVertical_bias="0.203"
+                app:buyOrRental="@{cart}"
+                tools:text="alquiler 14/08/21 al 25/10/21" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/ic_baseline_close_24"
+            android:padding="@dimen/_10sdp"
+            android:layout_gravity="right|center_vertical"
+            android:onClick="@{()-> deleteProductCartClickListener.onClick(product)}"/>
+    </androidx.cardview.widget.CardView>
+</layout>

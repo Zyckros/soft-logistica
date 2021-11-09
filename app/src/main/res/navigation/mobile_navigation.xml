@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress AndroidDomInspection -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_product">
+
+
+
+    <fragment
+        android:id="@+id/nav_order"
+        android:name="com.example.softlogistica.ui.order.OrderFragment"
+        android:label="@string/menu_order"
+        tools:layout="@layout/order_fragment"/>
+
+    <fragment
+        android:id="@+id/nav_product"
+        android:name="com.example.softlogistica.ui.product.ProductFragment"
+        android:label="@string/menu_product"
+        tools:layout="@layout/fragment_product" >
+        <action
+            android:id="@+id/action_nav_product_to_fragmentNewProduct"
+            app:destination="@id/fragmentNewProduct"
+            app:popUpTo="@id/nav_product" />
+        <action
+            android:id="@+id/action_nav_product_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" >
+        </action>
+        <action
+            android:id="@+id/action_nav_product_to_editProductFragment"
+            app:destination="@id/editProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_delivery_note"
+        android:name="com.example.softlogistica.ui.delivery_note.DeliveryNoteFragment"
+        android:label="@string/menu_delivery_note"
+        tools:layout="@layout/delivery_note_fragment" />
+    <fragment
+        android:id="@+id/fragmentNewProduct"
+        android:label="@string/menu_new_product"
+        android:name="com.example.softlogistica.ui.new_product.FragmentNewProduct"
+        tools:layout="@layout/fragment_form_new_product" >
+        <action
+            android:id="@+id/action_fragmentNewProduct_to_cameraXFragment"
+            app:destination="@id/cameraXFragment"
+            app:popUpTo="@id/fragmentNewProduct"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_invoice"
+        android:name="com.example.softlogistica.ui.invoice.InvoiceFragment"
+        android:label="@string/menu_invoice"
+        tools:layout="@layout/invoice_fragment" />
+    <fragment
+        android:id="@+id/nav_budget"
+        android:name="com.example.softlogistica.ui.budget.BudgetFragment"
+        android:label="@string/menu_budget"
+        tools:layout="@layout/budget_fragment" />
+    <fragment
+        android:id="@+id/cameraXFragment"
+        android:name="com.example.softlogistica.CameraXFragment"
+        android:label="@string/menu_camera"
+        tools:layout="@layout/camera_x_fragment" >
+        <action
+            android:id="@+id/action_cameraXFragment_to_captureImageFragment"
+            app:destination="@id/captureImageFragment"
+            app:popUpTo="@id/cameraXFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_store"
+        android:name="com.example.softlogistica.ui.store.StoreFragment"
+        android:label="@string/menu_store"
+        tools:layout="@layout/fragment_store" >
+        <action
+            android:id="@+id/action_nav_store_to_storeDetailFragment"
+            app:destination="@id/storeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_services"
+        android:name="com.example.softlogistica.ui.services.ServiceFragment"
+        android:label="@string/services"
+        tools:layout="@layout/fragment_services" />
+    <fragment
+        android:id="@+id/captureImageFragment"
+        android:name="com.example.softlogistica.CaptureImageFragment"
+        android:label="@string/capture_image_fragment"
+        tools:layout="@layout/capture_image_fragment" >
+        <action
+            android:id="@+id/action_captureImageFragment_to_cameraXFragment"
+            app:destination="@id/cameraXFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_captureImageFragment_to_fragmentNewProduct"
+            app:destination="@id/fragmentNewProduct"
+            app:popUpTo="@id/nav_product" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.softlogistica.ui.product_detail.ProductDetailFragment"
+        android:label="@string/product_detail_fragment"
+        tools:layout="@layout/fragment_machinery_detail" >
+        <argument android:name="product"
+            app:argType="com.example.softlogistica.model.product.Product" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_editProductFragment"
+            app:destination="@id/editProductFragment"
+            app:popUpTo="@id/productDetailFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_qr_code"
+        android:name="com.example.softlogistica.ui.qr.BarCodeFragment"
+        android:label="@string/bar_code_fragment" >
+        <action
+            android:id="@+id/action_nav_qr_code_to_productDetailFragment"
+            app:destination="@id/productDetailFragment"
+            app:popUpTo="@id/nav_qr_code"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProductFragment"
+        android:name="com.example.softlogistica.ui.edit_product.EditProductFragment"
+        android:label="@string/edit_product_fragment"
+        tools:layout="@layout/fragment_form_edit_product" >
+        <argument android:name="product"
+            app:argType="com.example.softlogistica.model.product.Product" />
+
+    </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.softlogistica.login.LoginActivity"
+        android:label="LoginActivity" />
+    <fragment
+        android:id="@+id/storeDetailFragment"
+        android:name="com.example.softlogistica.ui.store_detail.StoreDetailFragment"
+        android:label="StoreDetailFragment" >
+        <argument
+            android:name="product"
+            app:argType="com.example.softlogistica.model.product.Product" />
+    </fragment>
+    <fragment
+        android:id="@+id/bottom_nav_home"
+        android:name="com.example.softlogistica.ui.home.HomeFragment"
+        android:label="Home" />
+
+
+    <fragment
+        android:id="@+id/bottom_nav_chat"
+        android:name="com.example.softlogistica.ui.chat.ChatFragment"
+        android:label="Chat" />
+
+    <fragment
+        android:id="@+id/bottom_nav_notification"
+        android:name="com.example.softlogistica.ui.notification.NotificationFragment"
+        android:label="Notificaciones" />
+
+    <fragment
+        android:id="@+id/bottom_nav_cart"
+        android:name="com.example.softlogistica.ui.shopping_cart.ShoppingcartFragment"
+        android:label="Carrito" >
+
+        <action
+            android:id="@+id/action_shoppingcartFragment_to_nav_home"
+            app:destination="@id/bottom_nav_home"/>
+        <action
+            android:id="@+id/action_shoppingcartFragment_to_storeFragment"
+            app:destination="@+id/nav_store"/>
+        <action
+            android:id="@+id/action_shoppingcartFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_document_signing"
+        android:name="com.example.softlogistica.ui.document_signing.DocumentSigningFragment"
+        android:label="document_signing_fragment"
+        tools:layout="@layout/document_signing_fragment" />
+
+</navigation>

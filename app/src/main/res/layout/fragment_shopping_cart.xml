@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.softlogistica.ui.shopping_cart.ShoppingCartViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/empy_cart_layout">
+
+        <TextView
+            android:id="@+id/textview_empy_shopping_cart"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_100sdp"
+            android:text="No tienes ningú producto en el carrito"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            app:layout_constraintBottom_toTopOf="@+id/button_store"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.384"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.811" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="328dp"
+            android:text="ir a la tienda"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout 
+    android:id="@+id/framelayout_list_cart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:translationZ="@dimen/_5sdp"
+    android:backgroundTint="#FFFFFF">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_products_cart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationZ="@dimen/_5sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/final_button_cart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:bindingProductsCartList="@{viewmodel.cartListProducts}"
+        android:layout_marginBottom="@dimen/_50sdp"
+        tools:listitem="@layout/item_product_cart"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/final_button_cart"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_height="wrap_content"
+        android:text="finalizar pedido"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="center|bottom"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

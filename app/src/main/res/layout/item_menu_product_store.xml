@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="menu"
+            type="com.example.softlogistica.model.menu.ProductMenu" />
+        <variable
+            name="clickListener"
+            type="com.example.softlogistica.ui.store.MenuStoreListener" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_transport_store"
+            android:layout_width="@dimen/_115sdp"
+            android:layout_height="@dimen/_115sdp"
+            android:translationZ="1dp"
+            app:cardCornerRadius="10dp"
+            android:onClick="@{() -> clickListener.onClick(menu.id)}"
+            app:cardUseCompatPadding="true"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:onClick="@{() -> clickListener.onClick(menu.id)}"
+                android:layout_margin="5dp">
+
+
+                <ImageButton
+                    android:id="@+id/imageButton_transport_store"
+                    android:layout_width="@dimen/_62sdp"
+                    android:layout_height="@dimen/_62sdp"
+                    android:layout_marginTop="4dp"
+                    app:imageSrc="@{menu.image}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    android:onClick="@{() -> clickListener.onClick(menu.id)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@drawable/ic_baseline_local_shipping_24" />
+
+                <TextView
+                    android:id="@+id/textView_transport_store"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:textSize="@dimen/_13ssp"
+                    android:text="@{menu.name}"
+                    android:onClick="@{() -> clickListener.onClick(menu.id)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton_transport_store"
+                    tools:text="Transporte" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

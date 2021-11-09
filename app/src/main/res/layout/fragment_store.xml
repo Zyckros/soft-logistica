@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.softlogistica.ui.store.StoreViewModel" />
+        <variable
+            name="product"
+            type="com.example.softlogistica.model.product.Product" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/framelayout_shopping_cart">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_store"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+            android:id="@+id/progressBar_store"
+            android:layout_width="136dp"
+            android:layout_height="122dp"
+            android:layout_marginTop="@dimen/_24sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_menu_store"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="visible"
+            tools:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:listDataMenuStore="@{viewmodel.menuItems}"
+            tools:listitem="@layout/item_menu_product" />
+
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:onRefreshListener="@{() -> viewmodel.onRefresh()}"
+                tools:visibility="visible">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_product_store"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="200dp"
+                    android:visibility="gone"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingHorizontal="@dimen/_20sdp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:listDataProductsStore="@{viewmodel.products}"
+                    tools:listitem="@layout/item_product_store"
+                    tools:visibility="visible" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

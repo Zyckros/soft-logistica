@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.softlogistica.ui.services.ServiceViewModel"
+            />
+    </data>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/_27sdp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/roboto"
+            android:text="Describa el servicio que desea solicitar."
+            android:textAlignment="center"
+            android:textSize="@dimen/_15sdp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editText_new_product_description"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/border_description_new_product"
+            android:gravity="left"
+            android:hint="Descripción"
+            android:lines="10"
+            android:maxLines="10"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/setDatesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="Aplicar fechas"
+            app:layout_constraintBottom_toTopOf="@id/textEndDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editText_new_product_description" />
+
+
+        <TextView
+            android:id="@+id/textInitDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20sdp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="28dp"
+            android:text="Inicio :"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setDatesButton"
+            app:layout_constraintEnd_toStartOf="@id/textEndDate"/>
+
+        <TextView
+            android:id="@+id/textEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20sdp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="44dp"
+            android:text="fin :"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/setDatesButton"
+            app:layout_constraintStart_toEndOf="@id/textInitDate"
+            />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Ubicación"
+            app:layout_constraintBottom_toTopOf="@+id/sendButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInitDate"
+            app:layout_constraintVertical_bias="0.45" />
+
+
+        <EditText
+            android:id="@+id/locationText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/sendButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textEndDate" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sendButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="Enviar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locationText" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+</layout>

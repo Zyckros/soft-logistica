@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.softlogistica.ui.document_signing.DocumentSigningViewModel" />
+    </data>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.document_signing.DocumentSigningFragment">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEditText2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="24dp"
+            android:focusable="false"
+            android:hint="DNI"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:text="Firma"
+            android:translationZ="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/signature_pad"
+            app:layout_constraintStart_toStartOf="@+id/signature_pad"
+            app:layout_constraintTop_toTopOf="@+id/signature_pad"
+            app:layout_constraintVertical_bias="0.068" />
+
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:id="@+id/signature_pad"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/border_signature_pad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputEditText2"
+            app:penColor="@android:color/black" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEditText50"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="16dp"
+            android:focusable="false"
+            android:hint="Observaciones"
+            app:expandedHintEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signature_pad">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText70"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:scrollbars="vertical"
+                android:inputType="textMultiLine"
+                android:isScrollContainer="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signature_button_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="acpetar"
+            app:layout_constraintBottom_toBottomOf="@+id/signature_button_correction"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/signature_button_correction"
+            app:layout_constraintTop_toTopOf="@+id/signature_button_correction" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signature_button_correction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="corregir"
+            app:layout_constraintEnd_toStartOf="@+id/signature_button_accept"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputEditText50" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+</layout>

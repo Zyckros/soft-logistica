@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.softlogistica.ui.edit_product.EditProductViewModel" />
+        <import  type="android.view.View"/>
+        <import type="com.example.softlogistica.ui.edit_product.BindingUtilsEditProduct.Converter"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/title_new_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:text="@string/edit_product_title"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textView_internal_code_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="24dp"
+                android:visibility="@{viewmodel.editProduct.internal_code != null ? View.VISIBLE : View.GONE}"
+                android:text="@string/internal_code_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_new_product" />
+
+
+            <!--android:text="@={viewmodel.editProduct.internal_code}"-->
+            <EditText
+                android:id="@+id/editText_internal_code_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+
+                android:visibility="@{viewmodel.editProduct.internal_code != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_internal_code_title" />
+
+            <TextView
+                android:id="@+id/textView_brand_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:visibility="@{viewmodel.editProduct.brand != null ? View.VISIBLE : View.GONE}"
+                android:text="@string/brand_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_internal_code_value" />
+
+            <EditText
+                android:id="@+id/editTextText_brand_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:text="@={viewmodel.editProduct.brand}"
+                android:visibility="@{viewmodel.editProduct.brand != null ? View.VISIBLE : View.GONE}"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_brand_title" />
+
+            <TextView
+                android:id="@+id/textView_new_product_model"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/model_text_view"
+                android:visibility="@{viewmodel.editProduct.model != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextText_brand_value" />
+
+            <EditText
+                android:id="@+id/editText_model_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:text="@={viewmodel.editProduct.model}"
+                android:visibility="@{viewmodel.editProduct.model != null ? View.VISIBLE : View.GONE}"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_model" />
+
+            <TextView
+                android:id="@+id/textView_family_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="Familia"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_model_value" />
+
+            <Spinner
+                android:id="@+id/spinner_family_value_edit_product"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_family_title"
+                tools:listitem="@layout/support_simple_spinner_dropdown_item" />
+
+            <TextView
+                android:id="@+id/textView_product_picture_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/picture_product_text_view"
+                android:visibility="@{viewmodel.editProduct.photo_product != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_family_value_edit_product" />
+
+
+            <ImageView
+                android:id="@+id/imageView_product_picture_value"
+                android:layout_width="366dp"
+                android:layout_height="172dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                app:imgSrc="@{viewmodel.editProduct.photo_product}"
+                android:visibility="@{viewmodel.editProduct.photo_product != null ? View.VISIBLE : View.GONE}"
+                tools:src="@drawable/ic_menu_gallery"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_product_picture_title" />
+
+
+            <TextView
+                android:id="@+id/textView_pieces_picture_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/picture_pieces_text_view"
+                android:visibility="@{viewmodel.editProduct.technicalsheet != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_product_picture_value" />
+
+            <ImageView
+                android:id="@+id/imageView_pieces_picture_value"
+                android:layout_width="366dp"
+                android:layout_height="172dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                app:imgSrc="@{viewmodel.editProduct.technicalsheet}"
+                android:visibility="@{viewmodel.editProduct.technicalsheet != null ? View.VISIBLE : View.GONE}"
+                tools:src="@drawable/ic_menu_gallery"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_pieces_picture_title" />
+
+
+            <TextView
+                android:id="@+id/textView_itv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="ITV"
+                android:visibility="@{viewmodel.editProduct.itv != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_pieces_picture_value" />
+
+            <EditText
+                android:id="@+id/editTextText_itv_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:text="@={viewmodel.editProduct.itv}"
+                android:visibility="@{viewmodel.editProduct.itv != null ? View.VISIBLE : View.GONE}"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_itv_title" />
+
+            <TextView
+                android:id="@+id/textView_new_product_insurance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/license_text_view"
+                android:visibility="@{viewmodel.editProduct.license != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextText_itv_value" />
+
+            <EditText
+                android:id="@+id/editText_new_product_insurance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:text="@={viewmodel.editProduct.license}"
+                android:visibility="@{viewmodel.editProduct.license != null ? View.VISIBLE : View.GONE}"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_insurance" />
+
+            <TextView
+                android:id="@+id/textView_new_product_buy_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/buy_price_text_view"
+                android:visibility="@{viewmodel.editProduct.buy_price != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_insurance" />
+
+
+            <EditText
+                android:id="@+id/editText_new_product_buy_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:bindDouble="@{viewmodel.editProduct.buy_price}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_buy_price" />
+
+            <TextView
+                android:id="@+id/textView_new_product_sale_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/sale_price_text_view"
+                android:visibility="@{viewmodel.editProduct.sale_price != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_buy_price" />
+
+            <EditText
+                android:id="@+id/editText_new_product_sale_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:bindDouble="@{viewmodel.editProduct.sale_price}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_sale_price" />
+
+            <TextView
+                android:id="@+id/textView_new_product_rental_price_month"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/rental_price_month_text_view"
+                android:visibility="@{viewmodel.editProduct.rentalprice_month != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_sale_price" />
+
+            <EditText
+                android:id="@+id/editText_new_product_rental_price_month"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:bindDouble="@{viewmodel.editProduct.rentalprice_month}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_rental_price_month" />
+
+            <TextView
+                android:id="@+id/textView_new_product_rental_price_day"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/rental_price_day_text_view"
+                android:visibility="@{viewmodel.editProduct.rentalprice_day != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_rental_price_month" />
+
+            <EditText
+                android:id="@+id/editText_new_product_rental_price_day"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:bindDouble="@{viewmodel.editProduct.rentalprice_day}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_rental_price_day" />
+
+            <TextView
+                android:id="@+id/textView_new_product_rental_price_hour"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/rental_price_hour_text_view"
+                android:visibility="@{viewmodel.editProduct.rentalprice_hour != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_rental_price_day" />
+
+            <EditText
+                android:id="@+id/editText_new_product_rental_price_hour"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:bindDouble="@{viewmodel.editProduct.rentalprice_hour}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_rental_price_hour" />
+
+            <TextView
+                android:id="@+id/textView_new_product_rental_price_kilometer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/route_price_km_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="@{viewmodel.editProduct.rentalprice_km != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_rental_price_hour" />
+
+            <EditText
+                android:id="@+id/editText_new_product_rental_price_kilometer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:bindDouble="@{viewmodel.editProduct.rentalprice_km}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_rental_price_kilometer" />
+
+
+            <TextView
+                android:id="@+id/textView_new_product_journey_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/journey_price_text_view"
+                android:visibility="@{viewmodel.editProduct.journey_price != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_rental_price_kilometer" />
+
+
+
+            <EditText
+                android:id="@+id/editText_new_product_journey_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:bindDouble="@{viewmodel.editProduct.journey_price}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_journey_price" />
+
+            <TextView
+                android:id="@+id/textView_new_product_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/height_text_view"
+                android:visibility="@{viewmodel.editProduct.high != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_journey_price" />
+
+            <EditText
+                android:id="@+id/editText_new_product_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:text="@={Converter.intToString(viewmodel.editProduct.high)}"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_height" />
+
+            <TextView
+                android:id="@+id/textView_new_product_width"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/width_text_view"
+                android:visibility="@{viewmodel.editProduct.width != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_height" />
+
+            <EditText
+                android:id="@+id/editText_new_product_width"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_width" />
+
+            <TextView
+                android:id="@+id/textView_new_product_depth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/depth_text_view"
+                android:visibility="@{viewmodel.editProduct.depth != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_width" />
+
+            <EditText
+                android:id="@+id/editText_new_product_depth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+
+                android:visibility="@{viewmodel.editProduct.depth != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_depth" />
+
+            <TextView
+                android:id="@+id/textView_new_product_weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/weight_text_view"
+                android:visibility="@{viewmodel.editProduct.weight != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_depth" />
+
+            <EditText
+                android:id="@+id/editText_new_product_weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:visibility="@{viewmodel.editProduct.weight != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_weight" />
+
+            <TextView
+                android:id="@+id/textView_new_product_tare"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/tare_text_view"
+                android:visibility="@{viewmodel.editProduct.weight != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_weight" />
+
+            <EditText
+                android:id="@+id/editText_new_product_tare"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:visibility="@{viewmodel.editProduct.weight != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_tare" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/power_text_view"
+                android:visibility="@{viewmodel.editProduct.power != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_tare" />
+
+            <EditText
+                android:id="@+id/editText_new_product_power"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:visibility="@{viewmodel.editProduct.power != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+            <TextView
+                android:id="@+id/textView_new_product_maximum_authorized_mass"
+                android:layout_width="0dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/mma_text_view"
+                android:visibility="@{viewmodel.editProduct.loadmax_m3 != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_power" />
+
+            <EditText
+                android:id="@+id/editText_new_product_maximum_authorized_mass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:visibility="@{viewmodel.editProduct.loadmax_m3 != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_maximum_authorized_mass" />
+
+            <TextView
+                android:id="@+id/textView_new_product_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/description_text_view"
+                android:visibility="@{viewmodel.editProduct.description != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_maximum_authorized_mass" />
+
+            <EditText
+                android:id="@+id/editText_new_product_description"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/border_description_new_product"
+                android:gravity="left"
+                android:hint="Descripción"
+                android:visibility="@{viewmodel.editProduct.description != null ? View.VISIBLE : View.GONE}"
+                android:lines="10"
+                android:maxLines="10"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_new_product_description" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_new_product_send"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="52dp"
+                android:text="Enviar"
+                android:onClick="@{() -> viewmodel.updateProduct()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_new_product_description" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

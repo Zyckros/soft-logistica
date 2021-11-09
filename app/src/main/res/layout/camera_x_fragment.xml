@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:backgroundTint="@color/black"
+    tools:context=".CameraXFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/camera_capture_button"
+            android:layout_width="56dp"
+            android:layout_height="65dp"
+            android:layout_marginBottom="16dp"
+            android:background="#92939393"
+            android:backgroundTint="#92939393"
+            android:elevation="0dp"
+            android:onClick="takePhoto"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            android:src="@drawable/ic_baseline_camera_24"
+            android:text="Take Photo"
+            android:translationZ="5dp"
+            app:backgroundTint="#92939393"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:maxImageSize="55dp"
+            app:rippleColor="#00FFFFFF"
+            tools:ignore="OnClick" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/item_product_store"
+            app:layout_constraintBottom_toTopOf="@id/camera_capture_button">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:src="@drawable/ic_baseline_add_shopping_cart_24"/>
+        </ListView>
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/viewFinder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            app:barrierAllowsGoneWidgets="false"
+            app:layout_constrainedWidth="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

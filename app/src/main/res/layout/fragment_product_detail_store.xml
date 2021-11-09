@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.softlogistica.ui.store_detail.StoreDetailViewModel" />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="20dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageview_item_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:translationZ="20dp"
+                    app:imageUrl="@{viewmodel.productDetail}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@drawable/ic_baseline_local_shipping_24"
+                    tools:translationZ="20dp" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_title_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="16dp"
+                    android:text='@{(viewmodel.productDetail.brand  + " " + viewmodel.productDetail.model) ?? ""}'
+                    android:textAlignment="center"
+                    android:textSize="@dimen/title_product_detail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageview_item_detail"
+                    tools:text="Scania 750A" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_description_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:shadowColor="@color/black"
+                    android:text='@{viewmodel.productDetail.description ?? ""}'
+                    android:textAlignment="center"
+                    android:textSize="@dimen/text_size_detail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView_title_product"
+                    tools:text="Camion tracto remolcador para adaptarle cualquier tipo de remolque " />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_sale_price_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Precio de venta :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.sale_price != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_sale_price_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_description_detail"
+                    tools:visibility="visible" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_sale_price_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindPrice="@{viewmodel.productDetail.sale_price}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_sale_price_title"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_description_detail"
+                    tools:text="5.000€" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_rental_price_day_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Precio alquiler día :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.rentalprice_day != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/text_view_rental_price_day_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_sale_price_title"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_rental_price_day_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindPrice="@{viewmodel.productDetail.rentalprice_day}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_rental_price_day_title"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_sale_price_value"
+                    tools:text="300€" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_rental_price_month_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Precio alquiler mes :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.rentalprice_month != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_rental_price_month_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_rental_price_day_title"
+                    tools:visibility="visible" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_rental_price_month_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindPrice="@{viewmodel.productDetail.rentalprice_month}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_rental_price_month_title"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_rental_price_day_value"
+                    tools:text="1200 €" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_rental_price_hour_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Precio alquiler hora :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.rentalprice_hour != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_rentalPrice_hour_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_rental_price_month_title" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_rentalPrice_hour_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindPrice="@{viewmodel.productDetail.rentalprice_month}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_rental_price_hour_title"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_rental_price_month_value"
+                    tools:text="200€" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_power_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Potencia :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.power != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/text_view_power_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_rental_price_hour_title"
+                    tools:text="Potencia :" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_power_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindPower="@{viewmodel.productDetail}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_power_title"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_rentalPrice_hour_value"
+                    tools:text="370 [cv / kw]" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_par_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Par :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.par != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_par_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_power_title"
+                    tools:text="Par :" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_par_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindPar="@{viewmodel.productDetail}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_par_title"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_power_value"
+                    tools:text="1700 Nm" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_frequenzy_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Frecuencia :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.frequenzy_hz != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@id/textView_frequenzy_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_par_title"
+                    tools:text="Frecuencia :" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_frequenzy_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindFrequenzy='@{viewmodel.productDetail}'
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_frequenzy_title"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_par_value"
+                    tools:text="50/60 hz" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_voltaje_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Voltaje :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.voltage != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@id/textView_voltaje_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_frequenzy_title"
+                    tools:text="Voltaje :" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_voltaje_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindVolt="@{viewmodel.productDetail}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_voltaje_title"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_frequenzy_value"
+                    tools:text="220 v" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_ampers_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Amperios :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.intensity_amp != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@id/textView_ampers_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_voltaje_title"
+                    tools:text="Amperios :" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_ampers_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.intensity_amp != null ? View.VISIBLE : View.GONE}"
+                    app:bindAmps='@{viewmodel.productDetail.intensity_amp}'
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_ampers_title"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_voltaje_value"
+                    tools:text="2 amp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_high_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Altura :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.high != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_high_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_ampers_title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_high_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindMilimeters="@{viewmodel.productDetail.width}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_high_title"
+                    app:layout_constraintTop_toBottomOf="@id/textView_ampers_value"
+                    tools:text="3.190 mm" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_width_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Anchura :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.width != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_width_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_high_title"
+                    tools:text="Anchura :" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_width_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindMilimeters="@{viewmodel.productDetail.high}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_width_title"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_high_value"
+                    tools:text="2.476 mm" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_depth_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Profundidad :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.depth != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_depth_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_width_title"
+                    tools:text="Profundidad :" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_depth_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindMilimeters="@{viewmodel.productDetail.depth}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_depth_title"
+                    app:layout_constraintTop_toBottomOf="@id/textView_width_value"
+                    tools:text="5783 mm" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_net_weight_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Peso neto :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.weight != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_net_weight_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_depth_title"
+                    tools:text="Peso neto :" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_net_weight_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindKillograms="@{viewmodel.productDetail.weight}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_net_weight_title"
+                    app:layout_constraintTop_toBottomOf="@id/textView_depth_value"
+                    tools:text="4500 kg" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_tare_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Tara :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.tare != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_tare_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_net_weight_title"
+                    tools:text="Tara :" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_tare_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="@dimen/text_size_detail"
+                    app:bindKillograms="@{viewmodel.productDetail.tare}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_tare_title"
+                    app:layout_constraintTop_toBottomOf="@id/textView_net_weight_value"
+                    tools:text="4500 kg" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_fuel_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Combustible :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.fuel != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_fuel_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_tare_title"
+                    tools:text="Combustible :" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_fuel_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{viewmodel.productDetail.fuel}"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.fuel != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_fuel_title"
+                    app:layout_constraintTop_toBottomOf="@id/textView_tare_value"
+                    tools:text="Gasolina" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_axle_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Ejes :"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.number_axle != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_axle_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_fuel_title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_axle_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{viewmodel.productDetail.number_axle}"
+                    android:textSize="@dimen/text_size_detail"
+                    android:visibility="@{viewmodel.productDetail.number_axle != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_axle_title"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_fuel_value"
+                    tools:text="2x4" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_button_buy_product"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="27dp"
+            android:src="@drawable/ic_baseline_add_shopping_cart_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.91"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            android:onClick="@{()-> viewmodel.onAddProductCartClicked(viewmodel.productDetail)}"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

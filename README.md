@@ -13,7 +13,7 @@ The menus combined NavigationDrawer and BottomNavigation with Fragments.
 ![image](https://user-images.githubusercontent.com/20052066/140911118-7326433e-e728-404e-b3f0-b6c9b8ada03f.png)
 
 
-Has QR scanner code to find products more quickly.
+Has QR code scanner to find products more quickly.
 
 ![image](https://user-images.githubusercontent.com/20052066/140910641-e2745e2e-eb49-47ba-8af2-c01f36cdbfa7.png)
 
